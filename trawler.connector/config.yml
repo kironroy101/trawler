@@ -1,0 +1,23 @@
+redis:
+  host: 127.0.0.1
+  port: 6379
+  queues:
+    - "trawler-shipper-queue-1"
+elasticsearch:
+  hosts:
+    - host: 127.0.0.1
+      port: 9200
+      protocol: http
+  indexPrefix: trawler
+
+# -----------------------------------------------------------------------------
+# Documentation:
+#
+# redis.host - the host address of the Redis server
+# redis.port - the port on which to communicate with the Redis host
+# redis.queues - the names of the queues that log events should be read from (should match with the queues specified in the trawler-shipper config files)
+# elasticsearch.hosts
+#   elasticsearch.hosts[n].hosts - the host address of the Elasticsearch server
+#   elasticsearch.hosts[n].post - the REST port of the Elasticsearch server
+#   elasticsearch.protocol - the protocol to connect to Elasticsearch with
+# elasticsearch.indexPrefix - all log events are indexed to `<index-prefix>-<date>`

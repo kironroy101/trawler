@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+if [ -f /etc/default/trawler-shipper ]; then
+    . /etc/default/trawler-shipper
+fi
+
+JAR="/usr/share/trawler-shipper/trawler-shipper.jar"
+CONFIG="/etc/trawler-shipper/config.yml"
+LOGFILE="/var/log/trawler-shipper/trawler-shipper.log"
+
+usage()
+{
+  cat << EOF
+usage: $0 [config-file]
+
+Runs Trawler Shipper with the given configuration file.
+
+OPTIONS:
+  -h    Show this message
+EOF
+}
+
+OPTS=
+for arg in "$@"; do
+  case $arg in
+    "-h")
+      usage
+      exit 0
+      ;;
+    *)
+      CONFIG="$arg"
+     ;;
+  esac
+done
+
+exec java -jar "$JAR" --config "$CONFIG" >> "$LOGFILE" 2>&1

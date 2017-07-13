@@ -1,0 +1,14 @@
+# Optionally add classes to the classpath for additional functionality
+# EXTRA_CLASSPATH=
+
+# Optional JAVA_OPTS
+# EXTRA_JAVA_OPTS=
+
+# Alternative path to config directory
+# TRAWLER_PATH_CONF=
+
+# Alternative path to config file
+# TRAWLER_CONFIG=
+
+# Additional options to pass to riemann on startup
+# TRAWLER_OPTS=

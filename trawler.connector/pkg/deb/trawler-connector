@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+if [ -f /etc/default/trawler-connector ]; then
+    . /etc/default/trawler-connector
+fi
+
+JAR="/usr/share/trawler-connector/trawler-connector.jar"
+CONFIG="/etc/trawler-connector/config.yml"
+LOGFILE="/var/log/trawler-connector/trawler-connector.log"
+
+usage()
+{
+  cat << EOF
+usage: $0 [config-file]
+
+Runs Trawler connector with the given configuration file.
+
+OPTIONS:
+  -h    Show this message
+EOF
+}
+
+OPTS=
+for arg in "$@"; do
+  case $arg in
+    "-h")
+      usage
+      exit 0
+      ;;
+    *)
+      CONFIG="$arg"
+     ;;
+  esac
+done
+
+exec java -jar "$JAR" --config "$CONFIG" >> "$LOGFILE" 2>&1

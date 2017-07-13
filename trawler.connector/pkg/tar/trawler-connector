@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+top="$(dirname "$0")/.."
+
+JAR="$top/lib/trawler-connector.jar"
+CONFIG="$top/etc/config.yml"
+
+usage()
+{
+  cat << EOF
+usage: $0 [config-file]
+
+Runs Trawler Connector with the given configuration file.
+
+OPTIONS:
+  -h    Show this message
+EOF
+}
+
+OPTS=
+for arg in "$@"; do
+  case $arg in
+    "-h")
+      usage
+      exit 0
+      ;;
+    *)
+      CONFIG="$arg"
+     ;;
+  esac
+done
+
+exec java -jar "$JAR" --config "$CONFIG"

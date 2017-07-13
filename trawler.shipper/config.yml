@@ -1,0 +1,26 @@
+settings:
+  localstorePath: /home/hironroy/trawler-local-db
+redis:
+  host: 127.0.0.1
+  port: 6379
+  queue: trawler-shipper-queue-1
+  pollMilliseconds: 5000
+services:
+  # - filepath: "/tmp/example2.log"
+  #   service: example2
+  #   multilinePattern: "^\\S.+"
+
+# -----------------------------------------------------------------------------
+# Documentation:
+#
+# settings.localstorePath - location to create the tracking db file. (Note: the `trawler` user must have read/write permissions to this location.)
+# redis.host - the host address where the Redis service resides
+# redis.port - the port on which to communicate with the Redis host
+# redis.queue - the name of the Redis queue that log events should be written to
+# services[n].filepath - the path to a log file to monitor and ship (Note: the `trawler` must have read permissions on this file.)
+# services[n].service - the name of the service to associate the log file's events with
+# services[n].multilinePattern - the Java Regex to identify the start of a new log event. (Note: Java regex syntax differs from many other common regex implementations. See [Java Regex Documentation](https://docs.oracle.com/javase/tutorial/essential/regex/) for more information.)
+#
+# Common multiline patterns include:
+# "^.+"" - each newline is a log entry
+# "^\\S.+"" - a newline is a new log entry if it doesn't start with a tab or a space (this is useful for log formats like Logback which may contain stack traces)
